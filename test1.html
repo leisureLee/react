@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="react.js"></script>
+    <script src="react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+</head>
+
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var HelloWorld = React.createClass({ 
+              componentWillReceiveProps : function(name){ console.log(name) }, 
+              render : function(){
+                return (<p>hello,{this.props.name}</p>);
+                },
+                componentWillUnmount : function(){
+                    console.log("111")
+                }
+             }) ;
+            
+        var HelloPr = React.createClass({
+            getInitialState : function(){
+                return { name : '' };
+            },
+            handleChange : function(event){
+              this.setState({name:event.target.value})
+            },
+            render:function(){
+                if(this.state.name === "123"){
+                    return(<div>123</div>) 
+                }
+              return(
+
+                <div><HelloWorld name = {this.state.name}> </HelloWorld><br/>
+
+                <input type = "text" onChange = {this.handleChange} /></div>);
+              
+            }
+        })
+        ReactDOM.render(
+        <HelloPr />,document.getElementById('example'));
+    </script>
+</body>
+
+</html>
